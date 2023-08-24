@@ -25,13 +25,13 @@ const runMiddleware = (req: NextApiRequest, res: NextApiResponse, fn: any) => {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  
   // Run the cors middleware
   await runMiddleware(req, res, cors);
 
   if (req.method === "POST") {
     try {
-      const MERCHANT_PRIVATE_KEY = process.env.NEXT_PUBLIC_CHARGIFY_SIGN_IN_TOKEN;
+      const MERCHANT_PRIVATE_KEY =
+        process.env.NEXT_PUBLIC_CHARGIFY_SIGN_IN_TOKEN;
       if (!MERCHANT_PRIVATE_KEY) {
         throw new Error("MERCHANT_PRIVATE_KEY is not set");
       }
@@ -48,7 +48,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
 
       res.status(200).json({ token });
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
   } else {
