@@ -4,10 +4,21 @@ import jwt from "jsonwebtoken";
 
 // Initializing the cors middleware
 // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://gx-chargify-poc-1-fe-vue.vercel.app",
+];
+
 const cors = Cors({
-  origin: "http://localhost:5173", // or use a function/regex to whitelist multiple origins
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["POST", "GET", "HEAD"],
-  credentials: true, // this will allow cookies and headers to be sent with the request
+  credentials: true,
 });
 
 // Helper method to wait for a middleware to execute before continuing
