@@ -5,7 +5,9 @@ import jwt from "jsonwebtoken";
 // Initializing the cors middleware
 // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
 const cors = Cors({
+  origin: "http://localhost:5173", // or use a function/regex to whitelist multiple origins
   methods: ["POST", "GET", "HEAD"],
+  credentials: true, // this will allow cookies and headers to be sent with the request
 });
 
 // Helper method to wait for a middleware to execute before continuing
