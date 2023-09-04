@@ -53,7 +53,7 @@ export default async function handler(
   await runMiddleware(req, res, cors);
 
   // todo: set customerReference to the customer's reference - whatever that is?
-  const customerReference = "od_poc1_customer_reference_1"; //req.body.customerReference;
+  const customerReference = "pkrammer965@gmail.com"; //"od_poc1_customer_reference_1"; //req.body.customerReference;
   if (!customerReference) {
     res.status(400).json({ error: "customerReference is required" });
     return;
